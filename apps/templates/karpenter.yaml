@@ -16,7 +16,7 @@ spec:
     helm:
       parameters:
         - name: serviceAccount.annotations."eks\.amazonaws\.com/role-arn"
-          value: "arn:aws:iam::926702434684:role/karpenter-controller-df-hubble-dev-ce-01"
+          value: arn:aws:iam::926702434684:role/karpenter-controller-df-hubble-dev-ce-01
         - name: settings.aws.clusterName
           value: df-hubble-dev-ce-01
         - name: settings.aws.defaultInstanceProfile
