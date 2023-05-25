@@ -13,7 +13,7 @@ spec:
   source:
     path: apps/
     repoURL: https://github.com/viktor-kurchenko/argocd.git
-    targetRevision: HEAD
+    targetRevision: test
   syncPolicy:
     automated:
       prune: true
