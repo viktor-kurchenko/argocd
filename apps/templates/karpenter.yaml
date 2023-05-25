@@ -22,12 +22,8 @@ spec:
           value: karpenter-node-df-hubble-dev-ce-01
         - name: settings.aws.interruptionQueueName
           value: df-hubble-dev-ce-01
-        - name: controller.resources.requests.cpu
-          value: 1
         - name: controller.resources.requests.memory
           value: 1Gi
-        - name: controller.resources.limits.cpu
-          value: 1
         - name: controller.resources.limits.memory
           value: 1Gi
   sources: []
