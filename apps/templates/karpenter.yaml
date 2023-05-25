@@ -15,8 +15,6 @@ spec:
     chart: karpenter
     helm:
       parameters:
-        - name: serviceAccount.annotations."eks\.amazonaws\.com/role-arn"
-          value: arn:aws:iam::926702434684:role/karpenter-controller-df-hubble-dev-ce-01
         - name: settings.aws.clusterName
           value: df-hubble-dev-ce-01
         - name: settings.aws.defaultInstanceProfile
@@ -27,6 +25,9 @@ spec:
           value: 1Gi
         - name: controller.resources.limits.memory
           value: 1Gi
+        - name: serviceAccount.annotations.eks\.amazonaws\.com/role-arn
+          value: >-
+            arn:aws:iam::926702434684:role/karpenter-controller-df-hubble-dev-ce-01
   sources: []
   project: default
   syncPolicy:
