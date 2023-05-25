@@ -1,0 +1,46 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: karpenter
+spec:
+  destination:
+    name: ''
+    namespace: karpenter
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: ''
+    repoURL: public.ecr.aws/karpenter
+    targetRevision: v0.26.1
+    chart: karpenter
+    helm:
+      parameters:
+        - name: serviceAccount.annotations."eks\.amazonaws\.com/role-arn"
+          value: "arn:aws:iam::926702434684:role/karpenter-controller-df-hubble-dev-ce-01"
+        - name: settings.aws.clusterName
+          value: df-hubble-dev-ce-01
+        - name: settings.aws.defaultInstanceProfile
+          value: karpenter-node-df-hubble-dev-ce-01
+        - name: settings.aws.interruptionQueueName
+          value: df-hubble-dev-ce-01
+        - name: controller.resources.requests.cpu
+          value: 1
+        - name: controller.resources.requests.memory
+          value: 1Gi
+        - name: controller.resources.limits.cpu
+          value: 1
+        - name: controller.resources.limits.memory
+          value: 1Gi
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+    retry:
+      limit: 3
+      backoff:
+        duration: 5s
+        maxDuration: 3m0s
+        factor: 2
